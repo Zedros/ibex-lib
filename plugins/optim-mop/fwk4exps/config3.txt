@@ -1,0 +1,106 @@
+[base]
+test_instances = instances.txt
+mintime = 0.0001
+maxtime = 3600
+factors = 1 0.833 0.665 0.5 0.2 0.1
+sig_gain = 1.2
+max_seeds = 1
+min_seeds = 1
+algo_names = hamburger-rh
+#innerpoly20 cy cy-full eps-ctc ndist
+
+[hamburger-rh]
+tuning_param = RH
+tuning_values = 0.1 0.05 0.01 0.005
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params = _INSTANCE --eps-contract --cy-contract-full --rh=_RH --HAMBURGER -t _MAXTIME
+outputpos_times = 0
+outputpos_boxes = 0
+
+[hamburgerb-mid]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params = _INSTANCE --eps-contract --cy-contract-full --rh=0.01 --HAMBURGER -t _MAXTIME
+outputpos_times = 0
+outputpos_boxes = 0
+
+[hamburgerb-3split]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params = _INSTANCE --eps-contract --cy-contract-full --rh=0.01 --HAMBURGER -t _MAXTIME --3split
+outputpos_times = 0
+outputpos_boxes = 0
+
+[hamburgerb-MAXsplit]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params = _INSTANCE --eps-contract --cy-contract-full --rh=0.01 --HAMBURGER -t _MAXTIME --MAXsplit
+outputpos_times = 0
+outputpos_boxes = 0
+
+[50pointss]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params =  _INSTANCE --eps-contract --nb_ub_sols=50 --cy-contract-full -t _MAXTIME
+outputpos_times = 0
+outputpos_boxes = 0
+
+[hamburgerb]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params = _INSTANCE --eps-contract --cy-contract-full --rh=0.01 --HAMBURGER -t _MAXTIME
+outputpos_times = 0
+outputpos_boxes = 0
+
+[segmentsb]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params = _INSTANCE --eps-contract --cy-contract-full --SEGMENTS -t _MAXTIME
+outputpos_boxes = 0
+outputpos_times = 0
+
+[3points]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params = _INSTANCE --eps-contract --nb_ub_sols=3 --cy-contract-full -t _MAXTIME
+outputpos_boxes = 0
+outputpos_times = 0 
+
+
+
+[HV]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params =  _INSTANCE --nb_ub_sols=50 --cy-contract-full -t _MAXTIME --hv
+outputpos_boxes = 0
+outputpos_times = 0
+
+[std]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params =  _INSTANCE --nb_ub_sols=20 - -s weighted_sum --linear-relax=no -f hc4 -t _MAXTIME 
+outputpos_boxes = 0
+outputpos_times = 0
+
+[innerpoly20]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params =  _INSTANCE --nb_ub_sols=20 -s weighted_sum -t _MAXTIME 
+outputpos_boxes = 0
+outputpos_times = 0
+
+[cy]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params =  _INSTANCE --nb_ub_sols=50 --cy-contract -s weighted_sum -t _MAXTIME 
+outputpos_boxes = 0
+outputpos_times = 0
+
+[cy-full]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params =  _INSTANCE --nb_ub_sols=50 --cy-contract-full -s weighted_sum -t _MAXTIME 
+outputpos_boxes = 0
+outputpos_times = 0
+
+[eps-ctc]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params =  _INSTANCE --nb_ub_sols=50 --cy-contract-full --eps-contract -s weighted_sum -t _MAXTIME 
+outputpos_boxes = 0
+outputpos_times = 0
+
+[ndist]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params =  _INSTANCE --nb_ub_sols=50 --cy-contract-full --eps-contract -t _MAXTIME 
+outputpos_boxes = 0
+outputpos_times = 0
+
+

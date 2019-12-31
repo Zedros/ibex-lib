@@ -1,0 +1,16 @@
+constants
+
+variables
+x1 in [ 0,5];
+x2 in [ 0,3];
+z1 in [-1e8, 1e8];
+z2 in [-1e8, 1e8];
+
+constraints
+//objective functions
+4*x1^2+4*x2^2 = z1;
+(x1-5)^2+(x2-5)^2 = z2;
+// constraints
+(x1-5)^2+x2^2-25 <= 0;
+-(x1-8)^2-(x2+3)^2+7.7 <= 0;
+end

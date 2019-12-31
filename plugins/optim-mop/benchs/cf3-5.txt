@@ -1,0 +1,34 @@
+constants
+Pi in [3.141592653589,3.14159265359];
+
+Variables
+x1 in [0,1];
+x2 in [-2,2];
+x3 in [-2,2];
+x4 in [-2,2];
+x5 in [-2,2];
+y2 in [-1e8,1e8];
+y3 in [-1e8,1e8];
+y4 in [-1e8,1e8];
+y5 in [-1e8,1e8];
+z1 in [-1e8,1e8];
+z2 in [-1e8,1e8];
+
+function f1(x1,x2,x3,x4,x5,y3,y5)
+  return x1 + ( 4*y3^2 + 4*y5^2  - 2*cos(20*y3*Pi/sqrt(3)) * cos(20*y5*Pi/sqrt(5)) + 2 );
+end
+
+function f2(x1,x2,x3,x4,x5,y2,y4)
+  return 1-x1^2 + ( 4*y2^2 + 4*y4^2  - 2*cos(20*y2*Pi/sqrt(2)) * cos(20*y4*Pi/sqrt(4)) + 2 );
+end
+
+
+Constraints
+f1(x1,x2,x3,x4,x5,y3,y5) = z1;
+f2(x1,x2,x3,x4,x5,y2,y4) = z2;
+-f2(x1,x2,x3,x4,x5,y2,y4) - f1(x1,x2,x3,x4,x5,y3,y5)^2 + sin(2*Pi*(f1(x1,x2,x3,x4,x5,y3,y5)^2-f2(x1,x2,x3,x4,x5,y2,y4)+1)) + 1 <= 0;
+y2=x2-sin(6*Pi*x1 + 2*Pi/5);
+y3=x3-sin(6*Pi*x1 + 3*Pi/5);
+y4=x4-sin(6*Pi*x1 + 4*Pi/5);
+y5=x5-sin(6*Pi*x1 + 5*Pi/5);
+end

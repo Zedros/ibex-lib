@@ -1,0 +1,15 @@
+[base]
+test_instances = instances2.txt
+mintime = 0.0001
+maxtime = 3600
+factors = 1 0.833 0.665 0.5 0.2 0.1
+sig_gain = 1.2
+max_seeds = 1
+min_seeds = 1
+algo_names = mop-server
+
+[mop-server]
+exec = "../../../__build__/plugins/optim-mop/ibexmop"
+params = _INSTANCE --cy-contract-full --eps-contract --ub=ub2 --rh=0.01 -t _MAXTIME
+outputpos_times = 0
+outputpos_boxes = 0

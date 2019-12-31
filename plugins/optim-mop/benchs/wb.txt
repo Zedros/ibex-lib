@@ -1,0 +1,47 @@
+constants
+F=6000;
+L=14;
+E=30e6;
+
+variables
+x1 in [ 0.125,5];
+x2 in [ 0.1,10];
+x3 in [ 0.1,10];
+x4 in [ 0.125,5];
+z1 in [-1e8, 1e8];
+z2 in [-1e8, 1e8];
+
+function t1(x1,x2) 
+  return 6000/(sqrt(2)*x1*x2);
+end
+
+function t2(x1,x2,x3)
+  return 6000*(14+0.5*x2)*sqrt(0.25*(x2^2+(x1+x3)^2)) / (2*(0.707*x1*x2*(x2^2/12 + 0.25*(x1+x3)^2)));
+end
+
+function t(x1,x2,x3)
+   return sqrt( t1(x1,x2)^2 + t2(x1,x2,x3)^2 + (x2*t1(x1,x2)*t2(x1,x2,x3))/sqrt(0.25*(x2^2+(x1+x3)^2)) );
+end
+
+function o(x3,x4)
+   return 504000/(x3^2*x4);
+end
+
+function Pc(x3,x4)
+   return 64746.022 * (1-0.0282346*x3)*x3*x4^3;
+end
+
+constraints
+
+//objective functions
+1.104 * x1^2 * x2 + 0.048*x3*x4 * (14+x2) = z1;
+(4 * F * L^3)/(E*x3^3*x4) = z2;
+t(x1,x2,x3) - 13600 <= 0;
+o(x3,x4) - 30000 <= 0;
+6000 - Pc(x3,x4) <= 0;
+x1 - x4 <= 0;
+end
+
+
+
+

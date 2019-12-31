@@ -1,0 +1,14 @@
+constants
+
+variables
+x1 in [ 0,1];
+z1 in [-1e8, 1e8];
+z2 in [-1e8, 1e8];
+
+constraints
+//objective functions
+x1 = z1;
+1-x1 = z2;
+// constraints
+
+end

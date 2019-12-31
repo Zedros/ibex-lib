@@ -1,0 +1,29 @@
+constants
+Pi in [3.141592653589,3.14159265359];
+
+Variables
+x1 in [0,1];
+x2 in [-2,2];
+x3 in [-2,2];
+y2 in [-1e8,1e8];
+y3 in [-1e8,1e8];
+z1 in [-1e8,1e8];
+z2 in [-1e8,1e8];
+
+
+function f1(x1,x2,x3,y3)
+  return x1 + 2*( 4*y3^2 - 2*cos(20*y3*Pi/sqrt(3)) + 2 );
+end
+
+function f2(x1,x2,x3,y2)
+  return 1-x1^2 + 2*( 4*y2^2 - 2*cos(20*y2*Pi/sqrt(2)) + 2 );
+end
+
+
+Constraints
+f1(x1,x2,x3,y3) = z1;
+f2(x1,x2,x3,y2) = z2;
+-f2(x1,x2,x3,y2) - f1(x1,x2,x3,y3)^2 + sin(2*Pi*(f1(x1,x2,x3,y3)^2-f2(x1,x2,x3,y2)+1)) + 1 <= 0;
+y2 = x2-sin(6*Pi*x1 + 2*Pi/3);
+y3 = x3-sin(6*Pi*x1 + 3*Pi/3);
+end

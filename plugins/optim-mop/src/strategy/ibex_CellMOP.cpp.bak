@@ -1,0 +1,18 @@
+/*
+ * ibex_CellMOP.cpp
+ *
+ *  Created on: 10 ene. 2018
+ *      Author: iaraya
+ */
+
+#include "ibex_CellMOP.h.bak"
+
+namespace ibex {
+
+	int CellMOP::nb_cells = 0;
+	Interval CellMOP::y1_init = Interval(0,0);
+	Interval CellMOP::y2_init = Interval(0,0);
+
+}
+
+

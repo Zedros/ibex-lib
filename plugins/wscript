@@ -1,0 +1,57 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
+import ibexutils
+
+from waflib import Configure
+
+@Configure.conf
+def get_plugins (conf):
+	plugins = ibexutils.get_dirlist (conf.path)
+	is_plugin = lambda p: not p.startswith (conf.env.ITVLIB_PLUGIN_PREFIX) \
+	                  and not p.startswith (conf.env.LPLIB_PLUGIN_PREFIX)
+	return [ p for p in plugins if is_plugin (p) ]
+
+######################
+###### options #######
+######################
+def options (opt):
+	#call "options" for each surdir
+	subdir = ibexutils.get_dirlist (opt.path)
+	opt.recurse (subdir)
+
+######################
+##### configure ######
+######################
+def configure (conf):
+	#call "configure" of each plugin (not all subdir, because some subdir
+	# correspond to interval libraries and only one is used (configure for this
+	# library is called from top wscript))
+	plugins = conf.get_plugins ()
+	conf.recurse (plugins)
+
+######################
+####### build ########
+######################
+def build (bld):
+	#call "build" for each plugin (not all subdir, cf comments for configure)
+	plugins = bld.get_plugins ()
+	bld.recurse (plugins)
+
+######################
+####### utest ########
+######################
+def utest (tst):
+	# Call "utest" for each plugin (not all subdir, cf comments for configure).
+	# Plugin may not have tests so we add "mandatory = False"
+	plugins = tst.get_plugins ()
+	tst.recurse (plugins, mandatory = False)
+
+######################
+##### benchmarks #####
+######################
+def benchmarks (bch):
+	# Call "benchmarks" for each plugin (not all subdir, cf comments for
+	# configure). Plugin may not have benchmarks so we add "mandatory = False"
+	plugins = bch.get_plugins ()
+	bch.recurse (plugins, mandatory = False)
