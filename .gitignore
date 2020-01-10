@@ -28,6 +28,13 @@
 # python generated files
 *.pyc
 
+#INTERVAL EXPLORER
+*sol.txt
+*out.txt.state
+*out.txt
+*in.txt
+*in.txt.old
+
 # waf generated stuff
 .waf*
 .lock-waf*

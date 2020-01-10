@@ -1,5 +1,0 @@
-continue
-pause
-continue
-pause
-finish
